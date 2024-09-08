@@ -32,7 +32,7 @@ config_integration.trace_integrations(["requests"])
 # Logging
 logger = logging.getLogger(__name__) # Setup logger
 handler = AzureLogHandler(
-    connection_string="InstrumentationKey=c4d8d0e1-8930-4443-a7f1-1fbf145fdf12;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=069f5671-eb06-4ae2-b435-05645d09fffa"
+    connection_string="InstrumentationKey=445aa12e-a538-4d58-ae9d-30e287bded4f;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=c397747b-bb91-4e7e-ac2f-79f126c5019b"
 )
 
 handler.setFormatter(logging.Formatter("%(traceId)s %(spanId)s %(message)s"))
@@ -40,7 +40,7 @@ handler.setFormatter(logging.Formatter("%(traceId)s %(spanId)s %(message)s"))
 logger.addHandler(handler)
 logger.addHandler(
     AzureEventHandler(
-        connection_string="InstrumentationKey=c4d8d0e1-8930-4443-a7f1-1fbf145fdf12;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=069f5671-eb06-4ae2-b435-05645d09fffa"
+        connection_string="InstrumentationKey=445aa12e-a538-4d58-ae9d-30e287bded4f;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=c397747b-bb91-4e7e-ac2f-79f126c5019b"
     )
 )
 
@@ -48,7 +48,7 @@ logger.setLevel(logging.INFO)
 
 exporter = metrics_exporter.new_metrics_exporter(
     enable_standard_metrics=True,
-    connection_string="InstrumentationKey=c4d8d0e1-8930-4443-a7f1-1fbf145fdf12;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=069f5671-eb06-4ae2-b435-05645d09fffa",
+    connection_string="InstrumentationKey=445aa12e-a538-4d58-ae9d-30e287bded4f;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=c397747b-bb91-4e7e-ac2f-79f126c5019b",
 ) # Setup exporter
 
 view_manager.register_exporter(exporter)
@@ -56,7 +56,7 @@ view_manager.register_exporter(exporter)
 # Tracing
 tracer = Tracer(
     exporter=AzureExporter(
-        connection_string="InstrumentationKey=c4d8d0e1-8930-4443-a7f1-1fbf145fdf12;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=069f5671-eb06-4ae2-b435-05645d09fffa"
+        connection_string="InstrumentationKey=445aa12e-a538-4d58-ae9d-30e287bded4f;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=c397747b-bb91-4e7e-ac2f-79f126c5019b"
     ),
     sampler=ProbabilitySampler(1.0),
 ) # Setup tracer
@@ -67,7 +67,7 @@ app = Flask(__name__)
 middleware = FlaskMiddleware(
     app,
     exporter=AzureExporter(
-        connection_string="InstrumentationKey=c4d8d0e1-8930-4443-a7f1-1fbf145fdf12;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=069f5671-eb06-4ae2-b435-05645d09fffa"
+        connection_string="InstrumentationKey=445aa12e-a538-4d58-ae9d-30e287bded4f;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=c397747b-bb91-4e7e-ac2f-79f126c5019b"
     ),
     sampler=ProbabilitySampler(rate=1.0),
 ) # Setup flask middleware
@@ -157,6 +157,6 @@ def index():
 
 if __name__ == "__main__":
     # Use the statement below when running locally
-    # app.run() 
+    #app.run() 
     # Use the statement below before deployment to VMSS
-    app.run(host='0.0.0.0', threaded=True, debug=False) # remote
+    app.run(host='0.0.0.0', threaded=True, debug=True) # remote
